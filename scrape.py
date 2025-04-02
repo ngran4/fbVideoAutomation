@@ -6,6 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import time
+import os
+
+cookies_path = os.path.expanduser("~/secure_folder/cookies.txt")
 
 # set up webdriver
 driver_path = "./chromedriver"
@@ -16,7 +19,7 @@ driver = webdriver.Chrome(service=service)
 driver.get("https://www.facebook.com")
 
 # Load cookies from the exported file
-with open("cookies.txt", "r") as f:
+with open(cookies_path, "r") as f:
     cookies = json.load(f)
     for cookie in cookies:
         # Fix invalid "sameSite" values
